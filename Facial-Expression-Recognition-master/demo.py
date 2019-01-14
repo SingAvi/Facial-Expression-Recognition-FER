@@ -6,10 +6,14 @@ import tensorflow as tf
 
 from model import predict, image_to_tensor, deepnn
 
+# Inserting Haarcascade File to detect faces (frontal)
 CASC_PATH = './data/haarcascade_files/haarcascade_frontalface_default.xml'
 cascade_classifier = cv2.CascadeClassifier(CASC_PATH)
+
+#Predefined emotions to detect
 EMOTIONS = ['angry', 'disgusted', 'fearful', 'happy', 'sad', 'surprised', 'neutral']
 
+#Function to format image to resized image
 def format_image(image):
   if len(image.shape) > 2 and image.shape[2] == 3:
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -25,9 +29,11 @@ def format_image(image):
   for face in faces:
     if face[2] * face[3] > max_are_face[2] * max_are_face[3]:
       max_are_face = face
+
   # face to image
   face_coor =  max_are_face
   image = image[face_coor[1]:(face_coor[1] + face_coor[2]), face_coor[0]:(face_coor[0] + face_coor[3])]
+
   # Resize image to network size
   try:
     image = cv2.resize(image, (48, 48), interpolation=cv2.INTER_CUBIC)
@@ -79,6 +85,7 @@ def demo(modelPath, showBox=False):
   y_conv = deepnn(face_x)
   probs = tf.nn.softmax(y_conv)
 
+# Tensorflow predefined functions
   saver = tf.train.Saver()
   ckpt = tf.train.get_checkpoint_state(modelPath)
   sess = tf.Session()
@@ -86,6 +93,7 @@ def demo(modelPath, showBox=False):
     saver.restore(sess, ckpt.model_checkpoint_path)
     print('Restore model sucsses!!\nNOTE: Press SPACE on keyboard to capture face.')
 
+#Right now the emotions array seems to empty and will be filled as in real time
   feelings_faces = []
   for index, emotion in enumerate(EMOTIONS):
     feelings_faces.append(cv2.imread('./data/emojis/' + emotion + '.png', -1))

@@ -1,8 +1,8 @@
 #System Requirements
 
 1.Python Console
-2.Keras
-3.OpenCv
-4.Tensorflow (GPU or CPU) Gpu preferred
-5.Haarcascade_eye && Haarcascade Frontal Face
+2.Keras (Package) -- pip install Keras
+3.OpenCv (Package) -- pip install opencv-contrib-python
+4.Tensorflow (GPU or CPU) Gpu preferred (Package) -- pip install tensorflow/tenssorflow-gpu
+5.Haarcascade_eye && Haarcascade Frontal Face (XML Files) -- Available here - https://github.com/opencv/opencv/tree/master/data/haarcascades
 6.Data of faces from Kaggle (https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data)
