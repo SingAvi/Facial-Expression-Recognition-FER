@@ -1,0 +1,8 @@
+#System Requirements
+
+1.Python Console
+2.Keras
+3.OpenCv
+4.Tensorflow (GPU or CPU) Gpu preferred
+5.Haarcascade_eye && Haarcascade Frontal Face
+6.Data of faces from Kaggle (https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data)
